@@ -1,33 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import Products from './components/Products'
-import products from './mocks/products.json'
-import Header from './components/Header'
+import { useState } from "react";
+import { useFilters } from "./hooks/useFilters";
+import "./App.css";
+import { Products } from "./components/Products";
+import Footer from "./components/Footer";
+import initialProducts from "./mocks/products.json";
+import { Header } from "./components/Header";
 function App() {
-  const [filters, setFilter] = useState({
-    category: 'all',
-    maxPrice: 999999999,
-  })
-
-
-  //PRIMORDIAL - PRODUCTS FILTERING SYSTEM
-  const productsFiltering = (products) => {
-    return products.filter(product => {
-      return (
-        product.price <= filters.maxPrice &&
-        (filters.category === 'all' || product.category === filters.category)
-      )
-    })
-  }
-
-
+  const [products] = useState(initialProducts);
+  const { productsFiltering, setFilter } = useFilters();
   return (
     <>
-      <Header />
+      <Header changeFilters={setFilter} />
       <Products products={productsFiltering(products)} />
+      <Footer />
     </>
-  )
+  );
 }
 
-
-export default App
+export default App;

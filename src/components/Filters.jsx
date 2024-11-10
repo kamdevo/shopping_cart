@@ -1,19 +1,47 @@
+import { useState, useId } from "react";
+export const Filters = ({ onChange }) => {
+  const [minPrice, setMinPrice] = useState(0);
+  const minPriceFilterId = useId();
+  const categoryFilterId = useId();
+  const handleChangeMinPrice = (event) => {
+    setMinPrice(event.target.value);
+    onChange((prevState) => ({
+      ...prevState,
+      minPrice: event.target.value,
+    }));
+  };
 
-const Filters = () => {
-    return (
-        <section className="filters">
-            <div>
-                <label htmlFor="category">Category</label>
-                <select id="category">
-                    <option value="mens clothing">men's clothings</option>
-                    <option value="womensclothing">women's clothing</option>
-                    <option value="electronics">electronics</option>
-                    <option value="jewelry">jewelery</option>
-                </select>
-            </div>
-        </section >
-    )
-}
+  const handleChangeCategory = (event) => {
+    onChange((prevState) => ({
+      ...prevState,
+      category: event.target.value,
+    }));
+  };
 
+  return (
+    <section className="filters">
+      <div>
+        <label htmlFor={categoryFilterId}>Category</label>
+        <select onChange={handleChangeCategory} id={categoryFilterId}>
+          <option value="all">All</option>
+          <option value="men's clothing">men's clothings</option>
+          <option value="women's clothing">women's clothing</option>
+          <option value="electronics">electronics</option>
+          <option value="jewelery">jewelery</option>
+        </select>
+      </div>
 
-export default Filters
+      <div>
+        <label htmlFor={minPriceFilterId}>Price</label>
+        <input
+          type="range"
+          id={minPriceFilterId}
+          min="0"
+          max="1000"
+          onChange={handleChangeMinPrice}
+        />
+        <span>${minPrice}</span>
+      </div>
+    </section>
+  );
+};

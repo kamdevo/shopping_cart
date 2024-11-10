@@ -1,13 +1,12 @@
-import Filters from "./Filters"
-import products from "../mocks/products.json"
-const Header = () => {
-    return (
-        <header>
-            <h1>My prototype shop</h1>
-            <Filters products={products} />
-        </header>
-    )
-}
+import "./header.css";
 
+import { Filters } from "./Filters";
 
-export default Header
+export const Header = ({ changeFilters }) => {
+  return (
+    <header>
+      <h1>My prototype React shop 🛒 - By Kam</h1>
+      <Filters onChange={changeFilters} />
+    </header>
+  );
+};
