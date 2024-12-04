@@ -5,15 +5,19 @@ import { Products } from "./components/Products";
 import Footer from "./components/Footer";
 import initialProducts from "./mocks/products.json";
 import { Header } from "./components/Header";
+import { Cart } from "./components/Cart";
+import { CartProvider } from "./context/cart";
 function App() {
   const [products] = useState(initialProducts);
-  const { productsFiltering, setFilter } = useFilters();
+  const { productsFiltering } = useFilters();
+  const filteredProducts = productsFiltering(products);
   return (
-    <>
-      <Header changeFilters={setFilter} />
-      <Products products={productsFiltering(products)} />
+    <CartProvider>
+      <Header />
+      <Cart />
+      <Products products={filteredProducts} />
       <Footer />
-    </>
+    </CartProvider>
   );
 }
 
