@@ -41,7 +41,7 @@
 }
 
 .products button.remove {
-  background-color: red;
+  background-color: rgb(201, 58, 58);
   color: #fff;
 }
 
@@ -73,4 +73,8 @@ header h1 {
   color: white;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.cart-button {
+  background-color: #0b0b0b;
 }

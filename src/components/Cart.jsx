@@ -24,7 +24,7 @@ export const Cart = () => {
   return (
     <>
       <label className="cart-button" htmlFor={cartId}>
-        {<ShoppingCartIcon color="black" />}
+        {<ShoppingCartIcon />}
       </label>
       <input id={cartId} type="checkbox" hidden />
 
